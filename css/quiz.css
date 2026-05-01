@@ -116,7 +116,7 @@
   padding-bottom: var(--space-lg);
 }
 .screen-intro .social-proof-micro {
-  margin-top: auto;
+  margin-top: var(--space-xl);
 }
 .intro-badge {
   animation: fadeInDown 600ms ease 200ms both;
@@ -137,7 +137,7 @@
 .intro-subtitle {
   font-size: var(--font-size-subtitle);
   color: var(--color-text-secondary);
-  max-width: 520px;
+  max-width: 800px;
   margin: 0 auto;
   animation: fadeInDown 600ms ease 600ms both;
 }
