@@ -158,7 +158,7 @@
   function renderResult() {
     const p = PROFILES[state.profile];
 
-    els.resultBadge.textContent = `${p.emoji} ${p.badge}`;
+    els.resultBadge.textContent = `${p.emoji} Diagnóstico completo`;
     els.resultBadge.className = `badge ${p.badgeClass}`;
 
     els.resultProfileType.textContent = p.badge.replace('Seu perfil: ', '');
