@@ -38,10 +38,11 @@
     loadingPhase: document.getElementById('loadingPhase'),
     diagnosisPhase: document.getElementById('diagnosisPhase'),
     resultBadge: document.getElementById('resultBadge'),
-    resultTitle: document.getElementById('resultTitle'),
+    resultProfileType: document.getElementById('resultProfileType'),
     resultDiagnosis: document.getElementById('resultDiagnosis'),
     resultMethodList: document.getElementById('resultMethodList'),
-    resultDepoimentos: document.getElementById('resultDepoimentos'),
+    resultSwiperTrack: document.getElementById('resultSwiperTrack'),
+    resultSwiperDots: document.getElementById('resultSwiperDots'),
     resultOfferIntro: document.getElementById('resultOfferIntro')
   };
 
@@ -160,20 +161,28 @@
     els.resultBadge.textContent = `${p.emoji} ${p.badge}`;
     els.resultBadge.className = `badge ${p.badgeClass}`;
 
-    els.resultTitle.textContent = p.title;
+    els.resultProfileType.textContent = p.badge.replace('Seu perfil: ', '');
     els.resultDiagnosis.innerHTML = p.diagnosis.replace(/\n\n/g, '<br><br>');
 
     els.resultMethodList.innerHTML = p.methodItems.map(item =>
       `<div class="benefit-item"><span class="check-icon">✅</span><span class="benefit-text">${item}</span></div>`
     ).join('');
 
-    els.resultDepoimentos.innerHTML = p.depoimentos.map(d =>
-      `<div class="depoimento-thumb" onclick="openLightbox('${d.src}')">
-        <img src="${d.src}" alt="${d.alt}" loading="lazy">
+    // Build depoimentos swiper
+    els.resultSwiperTrack.innerHTML = p.depoimentos.map(d =>
+      `<div class="swiper-slide">
+        <div class="depoimento-thumb" onclick="openLightbox('${d.src}')">
+          <img src="${d.src}" alt="${d.alt}" loading="lazy">
+        </div>
       </div>`
     ).join('');
 
     els.resultOfferIntro.textContent = p.offerIntro;
+
+    // Init swiper after content is built
+    setTimeout(() => {
+      initSwiper('resultSwiperTrack', 'resultSwiperDots');
+    }, 50);
   }
 
   // ─── Event Bindings ───

@@ -109,11 +109,10 @@
 
 /* ─── TELA INTRO ─── */
 .screen-intro {
-  justify-content: flex-start;
+  justify-content: center;
   text-align: center;
   gap: var(--space-lg);
   position: relative;
-  padding-top: 10vh;
   padding-bottom: var(--space-lg);
 }
 .screen-intro .social-proof-micro {
@@ -343,27 +342,53 @@
 /* ─── TELA RESULTADO ─── */
 .screen-result {
   justify-content: flex-start;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   padding-top: var(--space-xl);
+  text-align: center;
 }
 .result-badge-wrap {
-  animation: fadeInDown 500ms ease both;
+  animation: resultReveal 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.result-badge-wrap .badge {
+  font-size: var(--font-size-body);
+  padding: var(--space-sm) var(--space-lg);
+  letter-spacing: 2px;
 }
 .result-title {
-  font-size: var(--font-size-h2);
+  font-size: var(--font-size-h1);
   font-weight: var(--font-weight-extrabold);
-  line-height: var(--line-height-snug);
-  animation: fadeInDown 500ms ease 200ms both;
+  line-height: var(--line-height-tight);
+  animation: resultReveal 800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms both;
+}
+.result-profile-type {
+  display: block;
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  background: linear-gradient(90deg, var(--color-primary), #00E08F, var(--color-primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: var(--space-xs);
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+@keyframes glowText {
+  from { filter: drop-shadow(0 0 8px rgba(0, 250, 157, 0.3)); }
+  to { filter: drop-shadow(0 0 20px rgba(0, 250, 157, 0.6)); }
+}
+@keyframes resultReveal {
+  from { opacity: 0; transform: scale(0.8) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 .result-diagnosis {
   font-size: var(--font-size-body-lg);
   color: var(--color-text-light-gray);
   line-height: var(--line-height-relaxed);
-  animation: fadeInDown 500ms ease 400ms both;
+  animation: fadeInDown 500ms ease 600ms both;
+  text-align: left;
 }
 .result-method {
   width: 100%;
-  animation: fadeInDown 500ms ease 600ms both;
+  text-align: left;
+  animation: fadeInDown 500ms ease 800ms both;
 }
 .result-method-title {
   font-size: var(--font-size-h4);
@@ -377,20 +402,14 @@
   gap: var(--space-sm);
 }
 .result-depoimentos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
   width: 100%;
-  animation: fadeInUp 500ms ease 800ms both;
-}
-@media (max-width: 479px) {
-  .result-depoimentos { grid-template-columns: 1fr; }
+  animation: fadeInUp 500ms ease 1000ms both;
 }
 .result-offer-intro {
   font-size: var(--font-size-body-lg);
   color: var(--color-text-light-gray);
   line-height: var(--line-height-relaxed);
-  animation: fadeInDown 500ms ease 1000ms both;
+  animation: fadeInDown 500ms ease 1200ms both;
 }
 
 /* ─── TELA CTA FINAL ─── */
@@ -592,7 +611,6 @@
 
   /* ══ INTRO ══ */
   .screen-intro {
-    padding-top: 6vh;
     padding-bottom: var(--space-base);
     gap: var(--space-base);
   }
