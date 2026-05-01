@@ -111,11 +111,20 @@
     });
   }
 
+  let isProcessingAnswer = false;
+
   // ─── Handle Answer ───
   function handleAnswer(card) {
+    if (isProcessingAnswer) return;
+    isProcessingAnswer = true;
+
     const index = parseInt(card.dataset.index);
     const q = QUESTIONS[state.currentQuestion];
     const opt = q.options[index];
+
+    // Block interaction during transition
+    const optionsList = document.getElementById('optionsList');
+    if (optionsList) optionsList.style.pointerEvents = 'none';
 
     // Visual feedback
     document.querySelectorAll('#optionsList .option-card').forEach(c => c.classList.remove('selected'));
@@ -130,6 +139,7 @@
     // Advance after short delay
     setTimeout(() => {
       state.currentQuestion++;
+      isProcessingAnswer = false;
       if (state.currentQuestion < QUESTIONS.length) {
         renderQuestion(state.currentQuestion);
       } else {

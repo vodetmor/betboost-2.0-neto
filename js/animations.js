@@ -318,10 +318,74 @@ function animateCounters() {
   window.addEventListener('resize', () => { resize(); createParticles(); });
 })();
 
+// ─── Custom Audio Player ───
+function initCustomAudio() {
+  const customAudio = document.getElementById('customAudio');
+  if (!customAudio) return;
+
+  const audio = document.getElementById('nativeAudio');
+  const playBtn = document.getElementById('audioPlayBtn');
+  const iconPlay = playBtn.querySelector('.icon-play');
+  const iconPause = playBtn.querySelector('.icon-pause');
+  const progressFill = document.getElementById('audioProgressFill');
+  const progressBar = document.getElementById('audioProgressBar');
+  const currentTimeEl = document.getElementById('audioCurrentTime');
+  const durationEl = document.getElementById('audioDuration');
+
+  function formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audio.duration);
+  });
+
+  if (audio.readyState >= 1) {
+    durationEl.textContent = formatTime(audio.duration);
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      iconPlay.style.display = 'none';
+      iconPause.style.display = '';
+    } else {
+      audio.pause();
+      iconPlay.style.display = '';
+      iconPause.style.display = 'none';
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressFill.style.width = `${progress}%`;
+  });
+
+  audio.addEventListener('ended', () => {
+    iconPlay.style.display = '';
+    iconPause.style.display = 'none';
+    progressFill.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+  });
+
+  progressBar.parentElement.addEventListener('click', (e) => {
+    const rect = progressBar.parentElement.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    if (!isNaN(audio.duration)) {
+      audio.currentTime = pos * audio.duration;
+    }
+  });
+}
+
 // ─── Init Swipers + Overlays ───
 document.addEventListener('DOMContentLoaded', () => {
   initSwiper('swiperTrack', 'swiperDots');
   buildCtaCarousel();
+  initCustomAudio();
   // Needs small delay for dynamically built carousel slides
   setTimeout(() => initVideoOverlays(), 100);
 });

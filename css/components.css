@@ -107,6 +107,7 @@
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 .option-card::before {
   content: '';
@@ -116,12 +117,18 @@
   opacity: 0;
   transition: opacity var(--transition-base);
 }
-.option-card:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 250, 157, 0.1);
+@media (hover: hover) {
+  .option-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 250, 157, 0.1);
+  }
+  .option-card:hover::before { opacity: 1; }
+  .option-card:hover .option-letter {
+    background: var(--color-primary);
+    color: var(--color-bg-primary);
+  }
 }
-.option-card:hover::before { opacity: 1; }
 .option-card.selected {
   border-color: var(--color-primary);
   background: linear-gradient(145deg, rgba(0, 250, 157, 0.12) 0%, rgba(0, 250, 157, 0.03) 100%);
@@ -141,7 +148,6 @@
   flex-shrink: 0;
   transition: all var(--transition-base);
 }
-.option-card:hover .option-letter,
 .option-card.selected .option-letter {
   background: var(--color-primary);
   color: var(--color-bg-primary);
@@ -274,6 +280,11 @@
   cursor: pointer;
   transition: all var(--transition-base);
   position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 55vh;
 }
 .depoimento-thumb:hover {
   border-color: var(--color-primary);
@@ -283,7 +294,8 @@
 .depoimento-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-height: 55vh;
+  object-fit: contain;
 }
 
 /* ─── Lightbox ─── */
@@ -434,17 +446,79 @@
   }
 }
 
-/* ─── Audio Player ─── */
-.audio-player {
+/* ─── Audio Player Customizado ─── */
+.audio-player-custom {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-md) var(--space-base);
-  background: rgba(255, 255, 255, 0.03);
+  padding: var(--space-md);
+  background: linear-gradient(145deg, rgba(44, 40, 40, 0.6) 0%, rgba(20, 18, 18, 0.8) 100%);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xxl);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
-.audio-player audio { width: 100%; height: 36px; }
+.audio-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-circle);
+  background: var(--color-primary);
+  color: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 12px rgba(0, 250, 157, 0.3);
+}
+.audio-play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(0, 250, 157, 0.5);
+}
+.audio-play-btn svg { width: 20px; height: 20px; }
+.audio-play-btn .icon-play { margin-left: 2px; }
+.audio-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.audio-title {
+  font-size: var(--font-size-caption);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  text-align: left;
+}
+.audio-progress {
+  width: 100%;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.audio-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  position: relative;
+  overflow: hidden;
+}
+.audio-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+.audio-time {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary);
+}
 
 /* ─── Metric Card ─── */
 .metric-card {
@@ -556,11 +630,11 @@
   flex-shrink: 0;
 }
 .diagnosis-bullet.result-bullet {
-  background: rgba(0, 250, 157, 0.06);
-  border-color: rgba(0, 250, 157, 0.15);
+  background: rgba(187, 53, 48, 0.15);
+  border-color: rgba(187, 53, 48, 0.3);
 }
 .diagnosis-bullet.result-bullet .bullet-icon {
-  color: var(--color-primary);
+  color: var(--color-danger-soft);
 }
 .diagnosis-highlight {
   text-align: center;

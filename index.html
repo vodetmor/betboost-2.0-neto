@@ -88,38 +88,13 @@
       <div class="diagnosis-container" id="diagnosisPhase" style="display:none">
         <h2 class="diagnosis-title">Diagnóstico de entrada</h2>
         <div class="diagnosis-bullets">
-          <div class="diagnosis-bullet"><span class="bullet-icon">✕</span> Entrar no mercado errado, sem filtro</div>
-          <div class="diagnosis-bullet"><span class="bullet-icon">✕</span> Sem regra de saída definida</div>
-          <div class="diagnosis-bullet"><span class="bullet-icon">✕</span> Sem método para dias de pressão</div>
-          <div class="diagnosis-bullet result-bullet"><span class="bullet-icon">→</span> Banca que não cresce. Reds que apagam semanas.</div>
+          <div class="diagnosis-bullet"><span class="bullet-icon">✕</span> Não é falta de esforço. Não é falta de vontade. E provavelmente também não é falta de conhecimento sobre futebol.</div>
+          <div class="diagnosis-bullet"><span class="bullet-icon">✕</span> O que trava a maioria de quem aposta é quase sempre a mesma combinação: entrar no mercado errado, sem filtro, sem regra de saída e sem um método que funcione mesmo nos dias de pressão.</div>
+          <div class="diagnosis-bullet result-bullet"><span class="bullet-icon">→</span> O resultado disso é previsível: banca que não cresce, sequências de red que apagam semanas de trabalho e a sensação de que você está sempre começando do zero.</div>
         </div>
         <p class="diagnosis-highlight">
           <strong class="text-green">Existe uma forma diferente de operar.</strong>
         </p>
-        <div class="diagnosis-proof">
-          <!-- Stats Table DEP-08 -->
-          <table class="stats-table">
-            <thead>
-              <tr>
-                <th>Filtro</th><th>Greens</th><th>Reds</th><th>Total</th><th>Taxa %</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>LAY 0-2 OFICIAL</td><td>351</td><td>0</td><td>351</td><td class="taxa-maxima">100.0%</td></tr>
-              <tr><td>LAY 2-0 OFICIAL</td><td>11</td><td>0</td><td>11</td><td class="taxa-maxima">100.0%</td></tr>
-              <tr><td>LAY GOLEADA VISIT.</td><td>460</td><td>5</td><td>465</td><td class="taxa-alta">98.9%</td></tr>
-              <tr><td>LAY GOLEADA MAND.</td><td>118</td><td>2</td><td>120</td><td class="taxa-alta">98.3%</td></tr>
-              <tr><td>LAY 0-1 OFICIAL</td><td>742</td><td>37</td><td>779</td><td class="taxa-alta">95.3%</td></tr>
-              <tr><td>LAY 1-0 OFICIAL</td><td>237</td><td>13</td><td>250</td><td class="taxa-alta">94.8%</td></tr>
-              <tr><td>LAY 1X2 OFICIAL</td><td>1069</td><td>75</td><td>1144</td><td class="taxa-alta">93.4%</td></tr>
-              <tr><td>LAY 2X1 OFICIAL</td><td>268</td><td>20</td><td>288</td><td class="taxa-alta">93.1%</td></tr>
-            </tbody>
-          </table>
-          <!-- DEP-02 Thumbnail -->
-          <div class="depoimento-thumb" onclick="openLightbox('assets/depoimentos/WhatsApp Image 2026-04-30 at 12.57.26.jpeg')">
-            <img src="assets/depoimentos/WhatsApp Image 2026-04-30 at 12.57.26.jpeg" alt="Depoimento: Faturei o mês todo" loading="lazy">
-          </div>
-        </div>
         <div class="diagnosis-cta-wrap">
           <button class="btn-cta" id="btnSeeHow">
             ▶ Ver como funciona
@@ -259,9 +234,25 @@
           <div class="swiper-dots" id="ctaSwiperDots"></div>
         </div>
         <!-- Audio -->
-        <div class="audio-player" style="margin-top:var(--space-lg)">
-          <span class="caption text-green">🎙️ Depoimento em áudio</span>
-          <audio controls preload="metadata"><source src="assets/depoimentos/WhatsApp Audio 2026-04-30 at 13.19.27.ogg" type="audio/ogg"></audio>
+        <div class="audio-player-custom" style="margin-top:var(--space-lg)" id="customAudio">
+          <audio id="nativeAudio" preload="metadata">
+            <source src="assets/depoimentos/WhatsApp Audio 2026-04-30 at 13.19.27.ogg" type="audio/ogg">
+          </audio>
+          <button class="audio-play-btn" id="audioPlayBtn" aria-label="Play/Pause">
+            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>
+          </button>
+          <div class="audio-info">
+            <div class="audio-title">🎙️ Depoimento em áudio</div>
+            <div class="audio-progress">
+              <div class="audio-progress-bar" id="audioProgressBar">
+                <div class="audio-progress-fill" id="audioProgressFill"></div>
+              </div>
+            </div>
+            <div class="audio-time">
+              <span id="audioCurrentTime">0:00</span> / <span id="audioDuration">0:00</span>
+            </div>
+          </div>
         </div>
       </div>
 
