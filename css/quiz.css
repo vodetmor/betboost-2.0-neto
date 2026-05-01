@@ -316,7 +316,7 @@
   display: flex;
   justify-content: center;
   opacity: 0;
-  animation: fadeInUp 500ms ease 3s both;
+  animation: fadeInUp 500ms ease 2s both;
 }
 
 /* ─── TELA PÓS-VSL ─── */
