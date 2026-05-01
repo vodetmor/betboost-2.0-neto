@@ -21,7 +21,7 @@
   text-decoration: none;
   cursor: pointer;
   width: 100%;
-  max-width: 480px;
+  max-width: 680px;
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
@@ -281,8 +281,7 @@
   transition: all var(--transition-base);
   position: relative;
   background: #000;
-  height: 280px;
-  max-height: 280px;
+  height: clamp(220px, 20vw, 380px);
 }
 .depoimento-thumb:hover {
   border-color: var(--color-primary);
@@ -291,8 +290,7 @@
 }
 .depoimento-thumb img {
   width: 100%;
-  height: 280px;
-  max-height: 280px;
+  height: clamp(220px, 20vw, 380px);
   object-fit: cover;
   object-position: top center;
   display: block;
