@@ -281,7 +281,7 @@
   transition: all var(--transition-base);
   position: relative;
   background: #000;
-  height: clamp(220px, 20vw, 380px);
+  height: clamp(220px, 20vw, 420px);
 }
 .depoimento-thumb:hover {
   border-color: var(--color-primary);
@@ -290,7 +290,7 @@
 }
 .depoimento-thumb img {
   width: 100%;
-  height: clamp(220px, 20vw, 380px);
+  height: clamp(220px, 20vw, 420px);
   object-fit: cover;
   object-position: top center;
   display: block;
