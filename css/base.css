@@ -17,6 +17,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1024px) {
+  html { font-size: 18px; }
+}
+
+@media (min-width: 1440px) {
+  html { font-size: 20px; }
+}
+
 body {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
